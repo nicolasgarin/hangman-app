@@ -3,6 +3,10 @@ import { HangmanDrawing } from "./components/HangmanDrawing"
 import { HangmanWord } from "./components/HangmanWord"
 import { Keyboard } from "./components/Keyboard"
 import words from "./wordList.json"
+import './App.scss'
+import Header from "./layout/Header"
+import Footer from "./layout/Footer"
+
 
 function getWord() {
   return words[Math.floor(Math.random() * words.length)]
@@ -64,37 +68,40 @@ function App() {
   }, [])
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        margin: "0 auto",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ fontSize: "2rem", textAlign: "center" }}>
-        {isWinner && "Winner! - Refresh to try again"}
-        {isLoser && "Nice Try - Refresh to try again"}
+    <>
+      <Header />
+      <div className="main">
+        <div className="container main-container">
+          <div className="row">
+            <div className="col-4">
+              <div className="cosotexto">
+                {isWinner && "Winner! - Refresh to try again"}
+                {isLoser && "Nice Try - Refresh to try again"}
+              </div>
+              <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+            </div>
+            <div className="col-8 r-side">
+              <HangmanWord
+                reveal={isLoser}
+                guessedLetters={guessedLetters}
+                wordToGuess={wordToGuess}
+              />
+              <div className="keyboard-container">
+                <Keyboard
+                  disabled={isWinner || isLoser}
+                  activeLetters={guessedLetters.filter(letter =>
+                    wordToGuess.includes(letter)
+                  )}
+                  inactiveLetters={incorrectLetters}
+                  addGuessedLetter={addGuessedLetter}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord
-        reveal={isLoser}
-        guessedLetters={guessedLetters}
-        wordToGuess={wordToGuess}
-      />
-      <div style={{ alignSelf: "stretch" }}>
-        <Keyboard
-          disabled={isWinner || isLoser}
-          activeLetters={guessedLetters.filter(letter =>
-            wordToGuess.includes(letter)
-          )}
-          inactiveLetters={incorrectLetters}
-          addGuessedLetter={addGuessedLetter}
-        />
-      </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

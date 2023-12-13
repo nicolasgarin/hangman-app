@@ -1,9 +1,5 @@
 @import "variables.scss";
 
-* {
-    background-color: $blanco;
-}
-
 .body {
     max-width: 800px;
     display: flex;
@@ -16,4 +12,190 @@
 .display-text {
     font-size: 2rem;
     text-align: center;
+}
+
+.main {
+    background-image: url("/src/assets/desert.webp");
+    background-size: cover;
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin: 0 auto;
+        align-items: center;
+        padding: 30px;
+
+        .row {
+            width: 100%;
+
+            .r-side {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+
+                //HANGMAN WORD
+                .hangman-word {
+                    display: flex;
+                    justify-content: center;
+                    gap: .25em;
+                    font-size: 4rem;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-family: monospace;
+                    .letter-container {
+                        border-bottom: .1em solid $brown;
+
+                        .visible {
+                            visibility: visible;
+                        }
+
+                        .hidden {
+                            visibility: hidden;
+                        }
+
+                        .red {
+                            color: $brown;
+                        }
+
+                        .black {
+                            color: $red-orange
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header {
+    width: 100%;
+    height: 62px;
+    font-size: 2rem;
+    background-color: $red-orange;
+
+    .logo {
+        color: $cream;
+        font-weight: 700;
+    }
+}
+
+//FOOTER
+footer {
+    min-height: $footerHeight;
+    background-color: orange;
+    padding: 30px 0;
+
+    .texto-footer {
+        color: white;
+        font-weight: 500;
+    }
+}
+
+//HANGMAN DRAWING
+.hangman-drawing {
+    position: relative;
+
+    .head {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        border: 10px solid black;
+        position: absolute;
+        top: 50px;
+        right: -30px;
+    }
+
+    .body {
+        width: 10px;
+        height: 100px;
+        background: black;
+        position: absolute;
+        top: 120px;
+        right: 0;
+    }
+
+    .right-arm {
+        width: 100px;
+        height: 10px;
+        background: black;
+        position: absolute;
+        top: 150px;
+        right: -100px;
+        rotate: -30deg;
+        transform-origin: left bottom;
+    }
+
+    .left-arm {
+        width: 100px;
+        height: 10px;
+        background: black;
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        rotate: 30deg;
+        transform-origin: right bottom;
+    }
+
+    .right-leg {
+        width: 100px;
+        height: 10px;
+        background: black;
+        position: absolute;
+        top: 210px;
+        right: -90px;
+        rotate: 60deg;
+        transform-origin: left bottom;
+    }
+
+    .left-leg {
+        width: 100px;
+        height: 10px;
+        background: black;
+        position: absolute;
+        top: 210px;
+        right: 0;
+        rotate: -60deg;
+        transform-origin: right bottom;
+    }
+
+    .hang1 {
+        height: 50px;
+        width: 10px;
+        background: black;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .hang2 {
+        height: 10px;
+        width: 200px;
+        background: black;
+        margin-left: 120px;
+    }
+
+    .hang3 {
+        height: 400px;
+        width: 10px;
+        background: black;
+        margin-left: 120px;
+    }
+
+    .hang4 {
+        height: 10px;
+        width: 250px;
+        background: black;
+    }
+}
+
+//KEYBOARD
+.keyboard-container {
+    align-self: stretch;
+
+    .keyboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+        gap: .5rem;
+    }
 }
