@@ -33,14 +33,12 @@ type HangmanDrawingProps = {
 export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   return (
     <>
-    <img src={hang} />
-    <div className="hangman-drawing">
-      {BODY_PARTS.slice(0, numberOfGuesses)}
-      <div className="hang1" />
-      <div className="hang2" />
-      <div className="hang3" />
-      <div className="hang4" />
-    </div>
+      <div className="hangman-drawing">
+        <img className="hang" src={hang} />
+        <div className="hang-body">
+          {BODY_PARTS.slice(0, numberOfGuesses)}
+        </div>
+      </div>
     </>
   )
 }

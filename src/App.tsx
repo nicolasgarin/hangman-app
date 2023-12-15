@@ -7,7 +7,6 @@ import './App.scss'
 import Header from "./layout/Header"
 import Footer from "./layout/Footer"
 
-
 function getWord() {
   return words[Math.floor(Math.random() * words.length)]
 }
@@ -73,14 +72,14 @@ function App() {
       <div className="main">
         <div className="container main-container">
           <div className="row">
-            <div className="col-4">
+            <div className="col-12 col-md-4">
               <div className="cosotexto">
                 {isWinner && "Winner! - Refresh to try again"}
                 {isLoser && "Nice Try - Refresh to try again"}
               </div>
               <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
             </div>
-            <div className="col-8 r-side">
+            <div className="col-12 col-md-8 r-side">
               <HangmanWord
                 reveal={isLoser}
                 guessedLetters={guessedLetters}
