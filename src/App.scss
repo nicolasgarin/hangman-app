@@ -36,7 +36,7 @@
         gap: 2rem;
         margin: 0 auto;
         align-items: center;
-        padding: 30px;
+        padding: 30px 0;
 
         .row {
             width: 100%;
@@ -44,21 +44,44 @@
             .r-side {
                 display: flex;
                 flex-direction: column;
-                gap: 30px;
+                gap: 15px;
+
+                @media (min-width: 992px) {
+                    padding-left: 40px;
+                }
+
+
+                .cosotexto {
+                    height: 35px;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    text-align: center;
+
+                    .win {
+                        color: $green;
+                    }
+
+                    .lose {
+                        color: $red-orange;
+                    }
+                }
 
                 //HANGMAN WORD
                 .hangman-word {
                     display: flex;
                     justify-content: center;
                     gap: .25em;
-                    font-size: 4rem;
+                    font-size: 3rem;
+                    line-height: 4rem;
                     font-weight: bold;
                     text-transform: uppercase;
                     font-family: monospace;
+                    margin-bottom: 20px;
 
                     .letter-container {
                         border-bottom: .1em solid $brown;
                         width: 45px;
+
                         .visible {
                             visibility: visible;
                         }
@@ -96,86 +119,200 @@
 //FOOTER
 footer {
     min-height: $footerHeight;
-    background-color: orange;
+    background-color: $red-orange;
     padding: 30px 0;
 
     .texto-footer {
-        color: white;
+        color: $cream;
         font-weight: 500;
     }
 }
 
 //HANGMAN DRAWING
 .hangman-drawing {
-
     position: relative;
+    height: 366px;
+    width: 356px;
+
     .hang {
-        margin-top: 30px;
+        height: 100%;
+        width: 100%;
     }
 
     .hang-body {
 
         .head {
-            width: 50px;
-            height: 50px;
-            border-radius: 100%;
-            border: 10px solid black;
+            .skull {
+                position: absolute;
+                top: 143px;
+                left: 227px;
+                z-index: 1;
+
+                &.lose {
+                    transition: 3s;
+                    rotate: -25deg;
+                }
+
+                &.win {
+                    transition: 1s;
+                    top: 197px;
+                }
+
+                svg {
+                    height: 100px;
+                    width: 100px;
+                    border-radius: 50px;
+
+                    path {
+                        fill: $cream;
+                        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+                    }
+                }
+            }
+
+            .hat {
+                position: absolute;
+                top: 90px;
+                left: 199px;
+                rotate: -18deg;
+                transition: 1s;
+                z-index: 2;
+
+                &.lose {
+                    margin-top: 234px;
+                    rotate: 0deg;
+                }
+
+                &.win {
+                    top: 154px;
+                    left: 117px;
+                    rotate: -112deg;
+                }
+
+                svg {
+                    height: 100px;
+                    width: 125px;
+
+                    path {
+                        fill: $brown;
+                    }
+                }
+
+            }
+        }
+
+        .bone {
             position: absolute;
-            top: 182px;
-            left: 233px;
+
+            svg {
+                width: 50px;
+                height: auto;
+
+                path {
+                    fill: $cream-2;
+                }
+            }
         }
 
         .body {
-            width: 10px;
-            height: 70px;
-            background: black;
-            position: absolute;
-            top: 223px;
-            right: 72px;
+            top: 216px;
+            right: 37px;
+            rotate: 90deg;
+
+            &.win {
+                top: 271px;
+            }
+
+            svg {
+                width: 80px;
+            }
         }
 
         .right-arm {
-            width: 60px;
-            height: 10px;
-            background: black;
-            position: absolute;
-            top: 232px;
-            right: 19px;            
+            top: 202px;
+            right: 41px;
             rotate: 50deg;
             transform-origin: left bottom;
+            transition: 1s;
+
+            &.win {
+                top: 261px;
+                right: 32px;
+            }
         }
 
         .left-arm {
-            width: 60px;
-            height: 10px;
-            background: black;
-            position: absolute;
-            top: 232px;
-            right: 75px;
+            top: 202px;
+            right: 61px;
             rotate: -50deg;
             transform-origin: right bottom;
+            transition: 1s;
+
+            &.win {
+                top: 267px;
+                right: 121px;
+                rotate: 50deg;
+            }
         }
 
         .right-leg {
-            width: 60px;
-            height: 10px;
-            background: black;
-            position: absolute;
-            top: 278px;
-            right: 21px;
+            top: 248px;
+            right: 38px;
             rotate: 60deg;
             transform-origin: left bottom;
+            transition: 1s;
+
+            &.win {
+                top: 305px;
+                rotate: 71deg;
+            }
         }
 
         .left-leg {
-            width: 60px;
-            height: 10px;
-            background: black;
-            position: absolute;
-            top: 278px;
-            right: 71px;
+            top: 248px;
+            right: 66px;
             rotate: -60deg;
             transform-origin: right bottom;
+            transition: 1s;
+
+            &.win {
+                top: 309px;
+                right: 78px;
+                rotate: -33deg;
+            }
+        }
+        .boot {
+            position: absolute;
+            svg {
+                width: 70px;
+                height: auto;
+                path {
+                    fill: $cream-2;
+                }
+            }
+        }
+
+        .right-boot {
+            right: 0;
+            bottom: -22px;
+            &.win {
+                left: 275px;
+                top: 377px;
+                bottom: 0;
+                right: 0;
+            }
+        }
+
+        .left-boot {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            left: 203px;
+            bottom: -22px;
+            &.win {
+                left: 168px;
+                bottom: -38px;
+                rotate: 60deg;
+            }
         }
     }
 }
@@ -186,7 +323,7 @@ footer {
 
     .keyboard {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(67px, 1fr));
         gap: .5rem;
     }
 }

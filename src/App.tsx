@@ -70,16 +70,16 @@ function App() {
     <>
       <Header />
       <div className="main">
-        <div className="container main-container">
+        <div className="container-lg main-container">
           <div className="row">
-            <div className="col-12 col-md-4">
-              <div className="cosotexto">
-                {isWinner && "Winner! - Refresh to try again"}
-                {isLoser && "Nice Try - Refresh to try again"}
-              </div>
-              <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
+            <div className="col-12 col-md-6 col-lg-4 l-side d-flex justify-content-center">
+              <HangmanDrawing numberOfGuesses={incorrectLetters.length} isWinner={isWinner} isLoser={isLoser} />
             </div>
-            <div className="col-12 col-md-8 r-side">
+            <div className="col-12 col-md-6 col-lg-8 r-side">
+            <div className="cosotexto">
+                {isWinner && <div className="win">"Winner! - Refresh to try again"</div>}
+                {isLoser && <div className="lose">"Nice Try - Refresh to try again"</div>}
+              </div>
               <HangmanWord
                 reveal={isLoser}
                 guessedLetters={guessedLetters}

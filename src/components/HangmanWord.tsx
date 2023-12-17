@@ -12,7 +12,7 @@ export function HangmanWord({
   return (
     <div className="hangman-word">
       {wordToGuess.split("").map((letter, index) => (
-        <span className="letter-container" key={index}>
+        <span className="letter-container d-flex justify-content-center" key={index}>
           <span className={`${guessedLetters.includes(letter) || reveal ? 'visible' : 'hidden'} ${!guessedLetters.includes(letter) && reveal ? " red" : " black"}`}>
             {letter}
           </span>
