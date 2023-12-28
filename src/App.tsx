@@ -6,6 +6,15 @@ import words from "./wordList.json"
 import './App.scss'
 import Header from "./layout/Header"
 import Footer from "./layout/Footer"
+import Modalbs from "./components/Modalbs"
+
+//import axios from "axios"
+
+//async function getWord2(): Promise<string> {
+//  const res = await axios
+//    .get('https://random-word-api.herokuapp.com/word')
+//  return res.data[0] as string
+//}
 
 function getWord() {
   return words[Math.floor(Math.random() * words.length)]
@@ -14,6 +23,8 @@ function getWord() {
 function App() {
   const [wordToGuess, setWordToGuess] = useState(getWord)
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+  //v2.0
+  const [score, setScore] = useState(0)
 
   const incorrectLetters = guessedLetters.filter(
     letter => !wordToGuess.includes(letter)
@@ -68,7 +79,8 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header score={score} />
+      <Modalbs />
       <div className="main">
         <div className="container-lg main-container">
           <div className="row">
