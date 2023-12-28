@@ -44,6 +44,10 @@ function App() {
     [guessedLetters, isWinner, isLoser]
   )
 
+   useEffect(() => {
+     isWinner ? setScore(prevScore => prevScore + 1) : null
+   }, [isWinner])
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const key = e.key
